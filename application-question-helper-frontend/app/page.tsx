@@ -10,6 +10,7 @@ const Home = () => {
   const [questions, setQuestions] = useState([""]);
   const [isDarkMode, setIsDarkMode] = useState<boolean | null>(null);
   const [resume, setResume] = useState<File | null>(null);
+  const [resumeName, setResumeName] = useState("");
 
   const resumeInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -108,10 +109,12 @@ const Home = () => {
   const handleResumeUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] || null;
     setResume(file);
+    setResumeName(file ? file.name : "");
   };
 
   const removeResume = () => {
     setResume(null);
+    setResumeName("");
     if (resumeInputRef.current) {
       resumeInputRef.current.value = ""; // Clear the file input
     }
@@ -157,15 +160,27 @@ const Home = () => {
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
               Upload Resume/CV:
             </label>
+            <div className="flex items-center space-x-2">
+              <button
+                type="button"
+                onClick={() => resumeInputRef.current?.click()}
+                className="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              >
+                Choose File
+              </button>
+              <span className="text-sm text-gray-600 dark:text-gray-300">
+                {resumeName || "No file chosen"}
+              </span>
+            </div>
             <input
               ref={resumeInputRef}
               type="file"
               accept=".pdf,.doc,.docx"
               onChange={handleResumeUpload}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-800 dark:border-gray-600 dark:text-white"
+              className="sr-only" // Hide the actual input
             />
             {resume && (
-              <div className="mt-2 flex items-center space-x-2">
+              <div className="mt-2">
                 <button
                   type="button"
                   onClick={removeResume}
