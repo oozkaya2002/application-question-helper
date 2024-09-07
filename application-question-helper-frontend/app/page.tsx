@@ -1,94 +1,72 @@
-"use client";
-
-import { useState } from "react";
-import ExperienceInput from "@/components/experience-input";
-import JobPostingInformation from "@/components/job-posting-input";
-import Questions from "@/components/questions-input";
-import SubmitButton from "@/components/submit-button";
-import { ThemeModeToggle } from "@/components/theme-mode-toggle";
-import { ThemeColorToggle } from "@/components/theme-color-toggle";
-
 const Home = () => {
-  const [linkedinURL, setLinkedinURL] = useState("");
-  const [jobPostingURL, setJobPostingURL] = useState("");
-  const [aboutPageURL, setAboutPageURL] = useState("");
-  const [additionalContext, setAdditionalContext] = useState("");
-  const [questions, setQuestions] = useState([""]);
-  const [resume, setResume] = useState<File | null>(null);
-  const [resumeName, setResumeName] = useState("");
-  const [buttonText, setButtonText] = useState("Generate Answers");
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    setButtonText("Generating...");
-    e.preventDefault();
-    if (!linkedinURL && !resume) {
-      alert(
-        "Please provide at least one experience input: LinkedIn URL or resume/CV.",
-      );
-      return;
-    }
-
-    if (!jobPostingURL || !aboutPageURL) {
-      alert("Please provide job posting URL and company about page URL.");
-      return;
-    }
-
-    if (resume && resume.size > 1024 * 1024) {
-      alert("File size must be less than 5MB.");
-      return;
-    }
-
-    if (
-      resume &&
-      !["application/pdf", "application/msword"].includes(resume.type)
-    ) {
-      alert("Invalid file type. Please upload a PDF or Word document.");
-      return;
-    }
-
-    const payload = {
-      linkedinURL,
-      jobPostingURL,
-      aboutPageURL,
-      questions,
-    };
-    // Send payload to backend API (will be implemented later)
-    // const response = await fetch('/api/submit', { method: 'POST', body: JSON.stringify(payload) });
-    // Handle response
-
-    setButtonText("Generated");
-  };
-
   return (
-    <div className="container mx-auto p-4 px-40">
-      <div className="flex justify-end mb-4">
-        <ThemeColorToggle />
-        <ThemeModeToggle />
-      </div>
-      <h1 className="text-3xl font-bold mb-6">
-        Supplemental Questions Assistant
-      </h1>
-
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <ExperienceInput
-          linkedinURL={linkedinURL}
-          setLinkedinURL={setLinkedinURL}
-          resume={resume}
-          setResume={setResume}
-          resumeName={resumeName}
-          setResumeName={setResumeName}
-        />
-        <JobPostingInformation
-          jobPostingURL={jobPostingURL}
-          setJobPostingURL={setJobPostingURL}
-          aboutPageURL={aboutPageURL}
-          setAboutPageURL={setAboutPageURL}
-          additionalContext={additionalContext}
-          setAdditionalContext={setAdditionalContext}
-        />
-        <Questions questions={questions} setQuestions={setQuestions} />
-        <SubmitButton buttonText={buttonText} />
-      </form>
+    <div className="container mx-auto p-4">
+      <header className="text-center py-10">
+        <h1 className="text-5xl font-bold mb-4 dark:text-white">
+          Welcome to JobAssist
+        </h1>
+        <p className="text-lg text-gray-600 dark:text-gray-300">
+          Simplifying your job application process.
+        </p>
+        <button
+          className="mt-6 px-8 py-3 bg-indigo-600 text-white text-lg font-medium rounded-md shadow-md
+            hover:bg-indigo-700"
+        >
+          Get Started
+        </button>
+      </header>
+      <section className="py-10">
+        <h2 className="text-3xl font-bold mb-6 dark:text-white text-center">
+          Features
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Feature 1 */}
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+            <h3 className="text-xl font-bold mb-4 dark:text-white">
+              Cover Letter Generator
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300">
+              Create personalized cover letters effortlessly.
+            </p>
+          </div>
+          {/* Feature 2 */}
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+            <h3 className="text-xl font-bold mb-4 dark:text-white">
+              Supplemental Questions Assistant
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300">
+              Answer supplemental questions with ease.
+            </p>
+          </div>
+          {/* Feature 3 */}
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+            <h3 className="text-xl font-bold mb-4 dark:text-white">
+              Resume Analyzer
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300">
+              Optimize your resume for each job application.
+            </p>
+          </div>
+        </div>
+      </section>
+      <footer className="py-6 text-center text-gray-600 dark:text-gray-300">
+        <p>&copy; 2024 JobAssist. All rights reserved.</p>
+        <div className="mt-4">
+          <a
+            href="#"
+            className="text-indigo-600 dark:text-indigo-400 hover:underline"
+          >
+            Privacy Policy
+          </a>
+          <span className="mx-2">|</span>
+          <a
+            href="#"
+            className="text-indigo-600 dark:text-indigo-400 hover:underline"
+          >
+            Terms of Service
+          </a>
+        </div>
+      </footer>
     </div>
   );
 };

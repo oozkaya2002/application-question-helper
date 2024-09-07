@@ -11,17 +11,17 @@ export function ThemeModeToggle() {
 
   return (
     <Button
-      className="bg-primary-forground text-primary"
+      className="bg-transparent text-primary border-primary"
       variant="outline"
       size="icon"
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}
     >
       <Sun
-        className={`h-[1.2rem] w-[1.2rem] transition-all ${
+        className={`h-[1.2rem] w-[1.2rem] ${
           theme === "light" ? "rotate-0 scale-100" : "-rotate-90 scale-0" }`}
       />
       <Moon
-        className={`absolute h-[1.2rem] w-[1.2rem] transition-all ${
+        className={`absolute h-[1.2rem] w-[1.2rem] ${
           theme === "light" ? "rotate-90 scale-0" : "rotate-0 scale-100" }`}
       />
       <span className="sr-only">Toggle theme</span>
