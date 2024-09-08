@@ -4,30 +4,29 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+// Auth-related imports are commented out for now
+// import { useSession } from "next-auth/react";
+
 import { ThemeColorToggle } from "@/components/theme-color-toggle";
 import { ThemeModeToggle } from "@/components/theme-mode-toggle";
 
 export default function Navbar() {
   const pathname = usePathname();
 
+  // const { data: session, status } = useSession(); // Auth session data
+  // const isLoggedIn: boolean = status === "authenticated"; // Check if user is authenticated
+
   return (
     <nav className="border-b">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <div className="flex space-x-4">
+      <div className="relative flex justify-between mx-auto container h-16 px-4 items-center">
+        <div className="flex space-x-4 w-56">
           <ThemeColorToggle />
           <ThemeModeToggle />
         </div>
-        <div className="flex justify-center">
+        <div className="relative flex items-center justify-evenly">
           <Link
             href="/coverletter"
-            className={`text-sm font-medium transition-colors hover:text-primary ${
+            className={`text-sm font-medium transition-colors hover:text-primary mx-2 ${
               pathname === "/coverletter"
                 ? "text-primary"
                 : "text-muted-foreground"
@@ -37,7 +36,7 @@ export default function Navbar() {
           </Link>
           <Link
             href="/questions"
-            className={`text-sm font-medium transition-colors hover:text-primary ${
+            className={`text-sm font-medium transition-colors hover:text-primary mx-2 ${
               pathname === "/questions"
                 ? "text-primary"
                 : "text-muted-foreground"
@@ -46,28 +45,14 @@ export default function Navbar() {
             Questions Assistant
           </Link>
         </div>
-        <div className="flex items-center space-x-4">
-          <DropdownMenu>
-            <DropdownMenuTrigger>
-              <Button variant="outline" size="sm">
-                Account
-              </Button>
-            </DropdownMenuTrigger>
-          </DropdownMenu>
-          <DropdownMenu>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem>
-                <Link href="/login" className="flex w-full items-center">
-                  Login
-                </Link>
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Link href="/login/logout" className="flex w-full items-center">
-                  Logout
-                </Link>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+        <div className="flex items-center space-x-4 w-56">
+          {/* For now, hardcoding the "Sign up / Log in" link */}
+          <Link
+            href="/api/auth/signin"
+            className="text-sm font-medium transition-colors hover:text-primary"
+          >
+            Sign up / Log in
+          </Link>
         </div>
       </div>
     </nav>
