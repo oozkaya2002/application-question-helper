@@ -48,7 +48,7 @@ export default function Navbar() {
         <div className="flex items-center space-x-4 w-56">
           {/* For now, hardcoding the "Sign up / Log in" link */}
           <Link
-            href="/api/auth/signin"
+            href="/api/auth/login"
             className="text-sm font-medium transition-colors hover:text-primary"
           >
             Sign up / Log in
