@@ -1,3 +1,5 @@
+// Credit to "The Dev Logger" for the original code https://www.youtube.com/@TheDevLogger
+
 const themes = {
   Orange: {
     light: {

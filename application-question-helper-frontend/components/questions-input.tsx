@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 interface QuestionsInputProps {
   questions: string[];
   setQuestions: (questions: string[]) => void;
@@ -36,28 +37,23 @@ const QuestionsInput: React.FC<QuestionsInputProps> = ({
             required
           />
           {questions.length > 1 && (
-            <button
-              type="button"
+            <Button
+              variant="destructive"
               onClick={() => removeQuestion(index)}
-              className="px-3 py-2 text-sm font-medium text-white bg-red-600 rounded-md shadow-sm
-                hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2
-                focus:ring-red-500"
+              className="px-3 py-2"
             >
               Remove
-            </button>
+            </Button>
           )}
         </div>
       ))}
-      <button
-        type="button"
+      <Button
+        variant="default"
         onClick={addQuestion}
-        className="mt-2 inline-flex items-center px-3 py-2 border text-sm leading-4 font-medium
-          rounded-md shadow-sm text-primary-foreground bg-primary
-          hover:bg-primary-foreground hover:text-primary focus:outline-none focus:ring-2
-          focus:ring-offset-2 focus:ring-indigo-500"
+        className="px-3 py-2 mt-2"
       >
         Add Question
-      </button>
+      </Button>
     </div>
   );
 };

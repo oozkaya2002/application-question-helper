@@ -9,6 +9,9 @@ import { usePathname } from "next/navigation";
 
 import { ThemeColorToggle } from "@/components/theme-color-toggle";
 import { ThemeModeToggle } from "@/components/theme-mode-toggle";
+import UserNav from "./user-nav";
+import { Button } from "@/components/ui/button";
+import { link } from "fs";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -24,35 +27,31 @@ export default function Navbar() {
           <ThemeModeToggle />
         </div>
         <div className="relative flex items-center justify-evenly">
-          <Link
-            href="/coverletter"
+          <Button
+            asChild
+            variant="link"
             className={`text-sm font-medium transition-colors hover:text-primary mx-2 ${
               pathname === "/coverletter"
-                ? "text-primary"
+                ? "text-primary underline"
                 : "text-muted-foreground"
               }`}
           >
-            Cover Letter Assistant
-          </Link>
-          <Link
-            href="/questions"
+            <Link href="/coverletter">Cover Letter Assistant</Link>
+          </Button>
+          <Button
+            asChild
+            variant="link"
             className={`text-sm font-medium transition-colors hover:text-primary mx-2 ${
               pathname === "/questions"
-                ? "text-primary"
+                ? "text-primary underline"
                 : "text-muted-foreground"
               }`}
           >
-            Questions Assistant
-          </Link>
+            <Link href="/questions">Questions Assistant</Link>
+          </Button>
         </div>
         <div className="flex items-center space-x-4 w-56">
-          {/* For now, hardcoding the "Sign up / Log in" link */}
-          <Link
-            href="/api/auth/login"
-            className="text-sm font-medium transition-colors hover:text-primary"
-          >
-            Sign up / Log in
-          </Link>
+          <UserNav />
         </div>
       </div>
     </nav>

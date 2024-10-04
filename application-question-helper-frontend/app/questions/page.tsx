@@ -5,7 +5,6 @@ import ExperienceInput from "@/components/experience-input";
 import JobPostingInformation from "@/components/job-posting-input";
 import Questions from "@/components/questions-input";
 import SubmitButton from "@/components/submit-button";
-import Navbar from "@/components/navbar";
 
 const Home = () => {
   const [linkedinURL, setLinkedinURL] = useState("");
@@ -60,7 +59,6 @@ const Home = () => {
 
   return (
     <div>
-      <Navbar />
       <div className="container mx-auto p-4 px-40">
         <h1 className="text-3xl font-bold mb-6">
           Supplemental Questions Assistant

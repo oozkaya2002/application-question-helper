@@ -1,3 +1,5 @@
+// Credit to "The Dev Logger" for the original code https://www.youtube.com/@TheDevLogger
+
 "use client";
 import * as React from "react";
 
@@ -49,7 +51,11 @@ export function ThemeColorToggle() {
       onValueChange={(value) => setThemeColor(value as ThemeColors)}
       defaultValue={themeColor}
     >
-      <SelectTrigger className="border-primary w-[180px] ring-offset-transparent focus:ring-transparent">
+      <SelectTrigger
+        className="border border-input bg-background shadow-sm hover:bg-accent
+          hover:text-accent-foreground w-[180px] transition-colors ring-offset-transparent
+          focus:ring-transparent"
+      >
         <SelectValue placeholder="Select Color" />
       </SelectTrigger>
       <SelectContent className="border-muted">

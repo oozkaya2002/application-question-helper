@@ -1,3 +1,5 @@
+// Credit to "The Dev Logger" for the original code https://www.youtube.com/@TheDevLogger
+
 "use client";
 import setGlobalColorTheme from "@/lib/theme-colors";
 import { useTheme } from "next-themes";

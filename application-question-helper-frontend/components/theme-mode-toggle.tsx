@@ -1,3 +1,5 @@
+// Credit to "The Dev Logger" for the original code https://www.youtube.com/@TheDevLogger
+
 "use client";
 
 import * as React from "react";
@@ -11,7 +13,6 @@ export function ThemeModeToggle() {
 
   return (
     <Button
-      className="bg-transparent text-primary border-primary"
       variant="outline"
       size="icon"
       onClick={() => setTheme(theme === "light" ? "dark" : "light")}

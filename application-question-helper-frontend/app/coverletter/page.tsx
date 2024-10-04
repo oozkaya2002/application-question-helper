@@ -4,7 +4,6 @@ import { useState } from "react";
 import ExperienceInput from "@/components/experience-input";
 import JobPostingInformation from "@/components/job-posting-input";
 import SubmitButton from "@/components/submit-button";
-import Navbar from "@/components/navbar";
 
 const page = () => {
   const [linkedinURL, setLinkedinURL] = useState("");
@@ -59,7 +58,6 @@ const page = () => {
 
   return (
     <div>
-      <Navbar />
       <div className="container mx-auto p-4 px-40">
         <h1 className="text-3xl font-bold mb-6">Cover Letter Assistant</h1>
         <form onSubmit={handleSubmit} className="space-y-4">

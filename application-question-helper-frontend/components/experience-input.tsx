@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { Button } from "@/components/ui/button"; // Assuming this is the path to the ShadcnUI Button component
 
 interface ExperienceInputProps {
   linkedinURL: string;
@@ -55,15 +56,12 @@ const ExperienceInput: React.FC<ExperienceInputProps> = ({
       <div>
         <label className="block text-sm font-medium">Upload Resume/CV:</label>
         <div className="flex items-center space-x-2">
-          <button
-            type="button"
+          <Button
             onClick={() => resumeInputRef.current?.click()}
-            className="px-4 py-2 text-sm font-medium text-primary-foreground bg-primary rounded-md
-              shadow-sm border hover:bg-primary-foreground hover:text-primary
-              focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className="px-4 py-2 text-sm"
           >
             Choose File
-          </button>
+          </Button>
           <span className="text-sm">{resumeName || "No file chosen"}</span>
         </div>
         <input
@@ -75,15 +73,13 @@ const ExperienceInput: React.FC<ExperienceInputProps> = ({
         />
         {resume && (
           <div className="mt-2">
-            <button
-              type="button"
+            <Button
               onClick={removeResume}
-              className="px-2 py-1 text-xs font-medium text-white bg-red-600 rounded-md shadow-sm
-                hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2
-                focus:ring-red-500"
+              variant="destructive"
+              className="px-2 py-1 text-xs"
             >
               Remove
-            </button>
+            </Button>
           </div>
         )}
       </div>
